@@ -48,9 +48,7 @@ def recover_calibration_value(amended_calibration_value):
 
 def recover_all_calibration_values(amended_calibration_values):
     calibration_values = []
-    i = 0
     for amended_calibration_value in amended_calibration_values.split("\n"):
-        i = i + 1
         if amended_calibration_value == "":
             continue
         calibration_value = recover_calibration_value(amended_calibration_value)
