@@ -1,4 +1,5 @@
 import sys
+from functools import reduce
 
 
 def read_input(input_file_name):
@@ -32,7 +33,11 @@ def get_game_id(game_text):
     return int(game_text.split(" ")[1])
 
 
-def solve_puzzle(input):
+def calculate_cubes_power(cubes):
+    return reduce(lambda x, y: x*y, cubes.values())
+
+
+def solve_puzzle_part_1(input):
     possible_games = []
     for game_record in input.split("\n"):
         if game_record == "":
@@ -44,7 +49,19 @@ def solve_puzzle(input):
     print(sum(possible_games))
 
 
+def solve_puzzle_part_2(input):
+    power_sum = 0
+    for game_record in input.split("\n"):
+        if game_record == "":
+            continue
+        _, cubes_text = game_record.split(":")
+        cubes = get_max_cubes(cubes_text)
+        power_sum += calculate_cubes_power(cubes)
+    print(power_sum)
+
+
 if __name__ == "__main__":
     file_input = sys.argv[1]
     input = read_input(file_input)
-    solve_puzzle(input)
+    solve_puzzle_part_1(input)
+    solve_puzzle_part_2(input)

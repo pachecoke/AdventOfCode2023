@@ -18,3 +18,8 @@ class Day2Tests(unittest.TestCase):
     def test_get_game_id(self):
         input = "Game 1"
         self.assertEqual(main.get_game_id(input), 1)
+
+    def test_calculate_cubes_power(self):
+        cubes = {"blue": 6, "red": 4, "green": 2}
+        set_power = main.calculate_cubes_power(cubes)
+        self.assertEqual(set_power, 48)
